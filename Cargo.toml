@@ -14,6 +14,13 @@ rust-version = "1.64"
 [badges]
 maintenance = { status = "passively-maintained" }
 
+[lib]
+name = "sslocalios"
+path = "src/lib.rs"
+crate-type = ["staticlib", "cdylib", "lib"]
+required-features = ["local"]
+
+
 [[bin]]
 name = "sslocal"
 path = "bin/sslocal.rs"
