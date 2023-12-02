@@ -39,6 +39,9 @@ pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 use service::local;
 
 /// # Safety
+/// cargo build --release --target aarch64-apple-ios
+/// cargo lipo --release
+/// cbindgen --config cbindgen-ios.toml -l C -o target/ssr.h
 #[no_mangle]
 pub unsafe extern "C" fn sslocal_for_ios(os: *mut c_char, count: c_int) {
 
