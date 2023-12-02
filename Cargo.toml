@@ -15,41 +15,40 @@ rust-version = "1.64"
 maintenance = { status = "passively-maintained" }
 
 [lib]
-name = "sslocalios"
+name = "ssr"
 path = "src/lib.rs"
 crate-type = ["staticlib", "cdylib", "lib"]
-required-features = ["local"]
 
-
-[[bin]]
-name = "sslocal"
-path = "bin/sslocal.rs"
-required-features = ["local"]
-
-[[bin]]
-name = "ssserver"
-path = "bin/ssserver.rs"
-required-features = ["server"]
-
-[[bin]]
-name = "ssurl"
-path = "bin/ssurl.rs"
-required-features = ["utility"]
-
-[[bin]]
-name = "ssmanager"
-path = "bin/ssmanager.rs"
-required-features = ["manager"]
-
-[[bin]]
-name = "ssservice"
-path = "bin/ssservice.rs"
-required-features = ["service"]
-
-[[bin]]
-name = "sswinservice"
-path = "bin/sswinservice.rs"
-required-features = ["winservice"]
+#
+#[[bin]]
+#name = "sslocal"
+#path = "bin/sslocal.rs"
+#required-features = ["local"]
+#
+#[[bin]]
+#name = "ssserver"
+#path = "bin/ssserver.rs"
+#required-features = ["server"]
+#
+#[[bin]]
+#name = "ssurl"
+#path = "bin/ssurl.rs"
+#required-features = ["utility"]
+#
+#[[bin]]
+#name = "ssmanager"
+#path = "bin/ssmanager.rs"
+#required-features = ["manager"]
+#
+#[[bin]]
+#name = "ssservice"
+#path = "bin/ssservice.rs"
+#required-features = ["service"]
+#
+#[[bin]]
+#name = "sswinservice"
+#path = "bin/sswinservice.rs"
+#required-features = ["winservice"]
 
 [workspace]
 members = ["crates/shadowsocks", "crates/shadowsocks-service"]

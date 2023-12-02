@@ -1,7 +1,10 @@
 //! Shadowsocks service command line utilities
 
-use std::process::ExitCode;
-use clap::Command;
+use std::ffi::{CStr, CString};
+use std::io::BufRead;
+use std::os::raw::c_char;
+use clap::{arg, Command};
+use libc::{c_int, printf};
 
 pub mod allocator;
 pub mod config;
@@ -37,11 +40,21 @@ use service::local;
 
 /// # Safety
 #[no_mangle]
-pub unsafe extern "C" fn main_run_sslocal_for_ios(os: Vec<&str>) -> ExitCode {
+pub unsafe extern "C" fn sslocal_for_ios(os: *mut c_char, count: c_int) {
+
+    let cmd = CString::from_raw(os.wrapping_add(0));
+    println!("cmd,{:?}", cmd);
+
+
+    let args: Vec<&str> = cmd.to_str().unwrap().split(" ").collect();
+
     let mut app = Command::new("shadowsocks")
         .version(VERSION)
         .about("A fast tunnel proxy that helps you bypass firewalls. (https://shadowsocks.org)");
     app = local::define_command_line_options(app);
-    let matches = app.get_matches_from(os);
-    local::main(&matches)
+
+    //let args = args.iter().map(|v| v.to_str().unwrap());
+
+    let matches = app.get_matches_from(args);
+    local::main(&matches);
 }
